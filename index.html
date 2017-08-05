@@ -23,7 +23,6 @@
           integrity="sha384-MD6zhovZ9zyNUpx2FepMO8dm88ZMFqKfLt+s/Us+6uy4dHM8oyPvRZj0boMmc4uK" crossorigin="anonymous">
 
     <!-- minified -->
-<!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
             integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f"
             crossorigin="anonymous"></script>
@@ -36,7 +35,6 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.28.0/codemirror.min.css"
           integrity="sha384-yrO23ics6kDWPetsnqRPPUa9AmFW2JzwBpTjnqHGux46qnEK6RYpsN38ZQarvqnP" crossorigin="anonymous">
--->
 
     <style>
         body {
@@ -85,6 +83,10 @@
 
         #clear-text:hover, #clear-text:focus {
             background: #770000;
+        }
+
+        .small-icon {
+            font-size: 16px;
         }
 
         .modal-container {
@@ -175,7 +177,8 @@
         </div>
         <hr>
         <div class="modal-body">
-            <p><kbd>Ctrl</kbd>+<kbd>S</kbd> / <kbd>Cmd</kbd>+<kbd>S</kbd> to save the file</p>
+            <p>Click on <i class="material-icons small-icon">delete</i> with empty editor to clear history</p>
+            <p><kbd>Ctrl</kbd>+<kbd>S</kbd> / <kbd>Cmd</kbd>+<kbd>S</kbd> to save</p>
             <p>Drag and drop a file into the editor to load it</p>
         </div>
     </div>
@@ -230,7 +233,11 @@
     }
 
     function clearText() {
-        editor.setValue("");
+        if (editor.getValue() === "") {
+            editor.clearHistory();
+        } else {
+            editor.setValue("");
+        }
         editor.focus();
     }
 
