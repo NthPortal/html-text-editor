@@ -41,12 +41,12 @@
     <link rel="stylesheet" href="css/main.css">
 
     <script type="text/javascript">
-        var lightDarkStyleKey = "editor-style";
-        var styleDark = "dark";
-        var styleLight = "light";
+        const lightDarkStyleKey = "editor-style";
+        const styleDark = "dark";
+        const styleLight = "light";
 
         function getLightDarkStyle() {
-            var style = window.localStorage.getItem(lightDarkStyleKey);
+            let style = window.localStorage.getItem(lightDarkStyleKey);
             if (style === styleLight) {
                 return styleLight;
             } else {
@@ -55,7 +55,7 @@
         }
 
         function deleteOldStyle() {
-            var prev = $("#style-link")[0];
+            let prev = $("#style-link")[0];
             if (prev !== null && prev !== undefined) {
                 prev.remove();
             }
@@ -115,19 +115,19 @@
 </div>
 
 <script type="text/javascript">
-    var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+    const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
         lineNumbers: true,
         lineWrapping: true
     });
 
     editor.focus();
 
-    var helpModal = $("#help-modal");
+    const helpModal = $("#help-modal");
 
     /* misc functions */
     function saveText() {
-        var blob = new Blob([editor.getValue()], {type: "text/plain;charset=utf-8"});
         saveAs(blob, "untitled.txt");
+        let blob = new Blob([editor.getValue()], {type: "text/plain;charset=utf-8"});
         editor.focus();
     }
 
@@ -194,7 +194,7 @@
         event.preventDefault();
         event.stopPropagation();
 
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = function () {
             editor.setValue(reader.result);
         };
